@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "cockroachdb"
   url      = env("DATABASE_URL")
 }
 
@@ -81,6 +81,6 @@ model Services {
   supplier        String
   service_type    String
   odometer        Int?
-  car_id          String   @db.VarChar
-  author_id       String?  @db.VarChar
+  car_id          String
+  author_id       String?
 }
