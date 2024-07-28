@@ -34,7 +34,7 @@ export default function ServiceHistoryDashboard({ car }: { car: Car }) {
               <div>
                 <p className="font-semibold">{service.service_type}</p>
                 <p className="text-sm text-muted-foreground">
-                  {service.date_created.toLocaleDateString()}
+                  {service.date_created}
                 </p>
                 <p className="text-sm">{service.service_details}</p>
                 <p className="text-sm">{service.supplier}</p>
