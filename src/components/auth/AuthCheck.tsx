@@ -1,6 +1,7 @@
 //create the authCheck component to check if the user is authenticated or not
 
-import React, { ReactNode } from "react";
+import React from "react";
+import type { ReactNode } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
@@ -13,7 +14,9 @@ const AuthCheck = ({ children }: { children: ReactNode }) => {
   }
 
   if (!session) {
-    router.push("/auth/signin");
+    router.push("/auth/signin").catch((error) => {
+      console.error(error);
+    });
     return null;
   }
 

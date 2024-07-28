@@ -12,13 +12,8 @@ import {
   TableCell,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Service } from "@/types/Services";
 
-export default function ServiceHistoryTable({
-  services,
-}: {
-  services: Service[];
-}) {
+export default function ServiceHistoryTable() {
   return (
     <main className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
       <h1 className="mb-8 text-3xl font-bold">Car Service History</h1>

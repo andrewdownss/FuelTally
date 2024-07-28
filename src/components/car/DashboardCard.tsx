@@ -1,8 +1,3 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/L4bCLycazPr
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
 import {
   Card,
   CardHeader,
@@ -10,7 +5,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Car } from "@/types/Car";
+import type { Car } from "@/types/Car";
 import Link from "next/link";
 import { api } from "@/utils/api";
 
@@ -18,7 +13,9 @@ export default function DashboardCard({ carObject }: { carObject: Car }) {
   const cars = api.car.getAllCars.useQuery();
   const removeCar = api.car.deleteCar.useMutation({
     onSuccess: () => {
-      cars.refetch();
+      cars.refetch().catch((error: Error) => {
+        console.error(error);
+      });
     },
   });
   return (
@@ -72,7 +69,7 @@ export default function DashboardCard({ carObject }: { carObject: Car }) {
   );
 }
 
-function BarcodeIcon(props: any) {
+function BarcodeIcon(props: { className: string }) {
   return (
     <svg
       {...props}
@@ -95,27 +92,7 @@ function BarcodeIcon(props: any) {
   );
 }
 
-function FlagIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
-      <line x1="4" x2="4" y1="22" y2="15" />
-    </svg>
-  );
-}
-
-function GaugeIcon(props: any) {
+function GaugeIcon(props: { className: string }) {
   return (
     <svg
       {...props}
@@ -131,26 +108,6 @@ function GaugeIcon(props: any) {
     >
       <path d="m12 14 4-4" />
       <path d="M3.34 19a10 10 0 1 1 17.32 0" />
-    </svg>
-  );
-}
-
-function XIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M18 6 6 18" />
-      <path d="m6 6 12 12" />
     </svg>
   );
 }

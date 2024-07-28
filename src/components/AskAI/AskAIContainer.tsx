@@ -16,17 +16,23 @@ export default function AskAIContainer() {
 
   const handleSubmit = async () => {
     setLoading(true);
-    getAnswer.mutateAsync(question, {
-      onSuccess: (data) => {
-        setResponse(data.choices[0]?.message.content || "");
-        setError("");
-      },
-      onError: (error) => {
+    getAnswer
+      .mutateAsync(question, {
+        onSuccess: (data) => {
+          setResponse(data.choices[0]?.message.content ?? "");
+          setError("");
+        },
+        onError: (error: { message: string }) => {
+          setError(error.message);
+          setResponse("");
+        },
+        onSettled: () => setLoading(false),
+      })
+      .catch((error: Error) => {
         setError(error.message);
         setResponse("");
-      },
-      onSettled: () => setLoading(false),
-    });
+        setLoading(false);
+      });
   };
 
   return (

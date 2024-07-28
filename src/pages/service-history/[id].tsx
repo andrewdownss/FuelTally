@@ -1,7 +1,6 @@
 import React from "react";
 import { api } from "@/utils/api";
-import ServiceHistoryTable from "@/components/ServiceHistory/ServiceHistoryTable";
-import { Service } from "@/types/Services";
+
 import { useRouter } from "next/router";
 export default function ServiceHistoryView() {
   const router = useRouter();

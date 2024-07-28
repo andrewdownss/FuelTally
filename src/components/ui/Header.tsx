@@ -1,6 +1,6 @@
 import React from "react";
 import { useSession } from "next-auth/react";
-import Link from "next/link";
+
 export default function Header() {
   const { data: sessionData } = useSession();
   return (

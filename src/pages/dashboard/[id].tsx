@@ -1,15 +1,8 @@
-import React, { useEffect } from "react";
-import Image from "next/image";
-import { NumericFormat } from "react-number-format";
-import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { useRouter } from "next/router";
-import { useState } from "react";
+
 import NavBar from "@/components/ui/NavBar";
 import { api } from "@/utils/api";
-import Link from "next/link";
+
 import ServiceHistoryDashboard from "@/components/ServiceHistory/ServiceHistoryDashboard";
 import AskAIContainer from "@/components/AskAI/AskAIContainer";
 
@@ -28,11 +21,6 @@ export default function ViewVehicleByID() {
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div className="rounded-lg bg-white p-6 shadow-lg dark:bg-gray-950">
               <div className="mb-4 flex items-center space-x-4">
-                <img
-                  src="/placeholder.svg"
-                  alt="Lamborghini"
-                  className="h-12 w-12 rounded-full"
-                />
                 <div>
                   <h2 className="text-2xl font-bold">
                     {data.make} {data.model}

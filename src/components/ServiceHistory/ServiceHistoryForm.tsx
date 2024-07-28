@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { api } from "@/utils/api";
@@ -29,13 +29,17 @@ export default function ServiceHistoryForm({ car_id }: { car_id?: string }) {
     event.preventDefault();
     const data = {
       ...formState,
-      car_id: car_id as string,
+      car_id: car_id!,
     };
 
     CreateService.mutateAsync(data, {
       onSuccess: () => {
-        router.push(`/dashboard/${car_id}`);
+        router.push(`/dashboard/${car_id}`).catch((error) => {
+          console.error(error);
+        });
       },
+    }).catch((error) => {
+      console.error(error);
     });
   };
   return (

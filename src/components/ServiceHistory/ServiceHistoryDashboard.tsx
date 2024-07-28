@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Car } from "@/types/Car";
+import type { Car } from "@/types/Car";
 import { api } from "@/utils/api";
 
 export default function ServiceHistoryDashboard({ car }: { car: Car }) {
@@ -31,10 +31,10 @@ export default function ServiceHistoryDashboard({ car }: { car: Car }) {
             <p>No service history</p>
           ) : (
             serviceData?.map((service) => (
-              <div>
+              <div key={service.id}>
                 <p className="font-semibold">{service.service_type}</p>
                 <p className="text-sm text-muted-foreground">
-                  {service.date_created}
+                  {service.date_created.toLocaleDateString()}
                 </p>
                 <p className="text-sm">{service.service_details}</p>
                 <p className="text-sm">{service.supplier}</p>
