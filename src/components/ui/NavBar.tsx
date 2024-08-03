@@ -12,7 +12,7 @@ export default function NavBar() {
 
   if (session?.user) {
     return (
-      <header className="bg-white px-6 py-4 shadow-md dark:bg-gray-950">
+      <header className="bg-white py-4 shadow-md dark:bg-gray-950">
         <div className="container mx-auto flex items-center justify-between">
           <Link
             href="/dashboard"

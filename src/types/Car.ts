@@ -1,4 +1,5 @@
 export type Car = {
+  userId: string;
   id: string;
   make: string;
   model: string;

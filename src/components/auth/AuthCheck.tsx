@@ -14,7 +14,7 @@ const AuthCheck = ({ children }: { children: ReactNode }) => {
   }
 
   if (!session) {
-    router.push("/auth/signin").catch((error) => {
+    router.push("/").catch((error) => {
       console.error(error);
     });
     return null;

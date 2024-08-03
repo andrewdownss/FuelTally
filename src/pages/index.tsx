@@ -1,8 +1,18 @@
-import { signIn, signOut } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import HeroImage from "@/public/hero-image.png";
+
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 export default function Home() {
+  const { data: session } = useSession();
+  const router = useRouter();
+  useEffect(() => {
+    if (session) {
+      router.push("/dashboard").catch(console.error);
+    }
+  }, [session, router]);
   return (
     <div className="mx-10 mt-12 text-center md:mx-0">
       <div className="mx-auto md:w-1/2">
