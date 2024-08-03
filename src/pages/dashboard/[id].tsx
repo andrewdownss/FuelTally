@@ -15,10 +15,10 @@ export default function ViewVehicleByID() {
   if (car.error) return <div>Error: {car.error.message}</div>;
   if (data)
     return (
-      <div>
+      <div className="bg-secondary">
         <NavBar />
-        <div className="space-y-6 p-6">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="mt-12 space-y-6">
+          <div className="flex flex-col justify-center space-y-4 md:flex-row md:space-x-4">
             <div className="rounded-lg bg-white p-6 shadow-lg dark:bg-gray-950">
               <div className="mb-4 flex items-center space-x-4">
                 <div>
@@ -35,7 +35,7 @@ export default function ViewVehicleByID() {
                   <p className="font-medium text-gray-500 dark:text-gray-400">
                     VIN
                   </p>
-                  <p className="text-lg font-bold">{data.vin}</p>
+                  <p className="text-md font-bold">{data.vin}</p>
                 </div>
                 <div>
                   <p className="font-medium text-gray-500 dark:text-gray-400">
@@ -58,8 +58,16 @@ export default function ViewVehicleByID() {
               </div>
             </div>
             <div className="rounded-lg bg-white p-6 shadow-lg dark:bg-gray-950">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col">
                 <div>
+                  <div>
+                    <p className="font-medium text-gray-500 dark:text-gray-400">
+                      Mileage
+                    </p>
+                    <p className="text-4xl font-bold">
+                      {data.miles.toLocaleString()} miles
+                    </p>
+                  </div>
                   <p className="font-medium text-gray-500 dark:text-gray-400">
                     Horsepower
                   </p>
@@ -83,18 +91,10 @@ export default function ViewVehicleByID() {
                   </p>
                   <p className="text-lg font-bold">{data.transmission}</p>
                 </div>
-                <div>
-                  <p className="font-medium text-gray-500 dark:text-gray-400">
-                    Mileage
-                  </p>
-                  <p className="text-4xl font-bold">
-                    {data.miles.toLocaleString()} miles
-                  </p>
-                </div>
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div className="flex flex-col justify-center space-y-4 md:flex-row md:space-x-4">
             <ServiceHistoryDashboard car={data} />
             <AskAIContainer />
           </div>

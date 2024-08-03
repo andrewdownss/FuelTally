@@ -36,7 +36,7 @@ export default function AskAIContainer() {
   };
 
   return (
-    <Card className="w-full max-w-md">
+    <Card className="w-full md:max-w-md">
       <CardHeader>
         <CardTitle>Ask the AI</CardTitle>
       </CardHeader>

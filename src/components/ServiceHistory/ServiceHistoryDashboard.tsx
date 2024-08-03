@@ -9,7 +9,7 @@ export default function ServiceHistoryDashboard({ car }: { car: Car }) {
   const serviceHistory = api.service.getAllServices.useQuery(car.id);
   const serviceData = serviceHistory.data;
   return (
-    <Card>
+    <Card className="md:w-96">
       <CardHeader className="flex justify-between">
         <CardTitle>Service History</CardTitle>
         <div className="flex space-x-2">
