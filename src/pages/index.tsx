@@ -5,7 +5,7 @@ import HeroImage from "@/public/hero-image.png";
 export default function Home() {
   return (
     <div className="mx-10 mt-12 text-center md:mx-0">
-      <div className="mx-auto w-1/2">
+      <div className="mx-auto md:w-1/2">
         <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight lg:text-5xl">
           A tool built for vehicle maintenance
         </h1>
