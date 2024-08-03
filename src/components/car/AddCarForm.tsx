@@ -36,7 +36,9 @@ const AddCarForm = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const response = await fetch(`https://api.example.com/cars/${vin}`);
+      const response = await fetch(
+        `https://auto.dev/api/vin/${vin}?apikey=ZrQEPSkKamFja3BvcHVAZ21haWwuY29t`,
+      );
       if (!response.ok) {
         throw new Error("Failed to fetch car data");
       }
