@@ -14,7 +14,7 @@ export default function Dashboard() {
   return (
     <AuthCheck>
       <NavBar />
-      <div>
+      <div className="m-4">
         <Header />
         <div className="container mx-auto py-8">
           <div className="my-4 mt-4">
