@@ -18,7 +18,7 @@ export default function Dashboard() {
         <Header />
         <div className="container mx-auto py-8">
           <div className="my-4 mt-4">
-            <Link href="/car/create">
+            <Link href="/cars/add">
               <Button>Add a car</Button>
             </Link>
           </div>
