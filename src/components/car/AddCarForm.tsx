@@ -17,22 +17,30 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { api } from "@/utils/api";
+import { useRouter } from "next/router";
 
 interface CarData {
   make: { name: string };
   model: { name: string };
   years: { year: string }[];
   categories: { epaClass: string };
-  engine: { cylinder: string; fuelType: string };
+  engine: {
+    cylinder: string;
+    fuelType: string;
+    horsepower: number;
+    torque: number;
+  };
   drivenWheels: string;
-  transmission: string;
+  transmission: { transmissionType: string };
   mpg: { city: string; highway: string };
 }
 
 const AddCarForm = () => {
   const [vin, setVin] = useState("");
   const [miles, setMiles] = useState(0);
-
+  const addCar = api.car.addCar.useMutation();
+  const router = useRouter();
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
@@ -51,13 +59,25 @@ const AddCarForm = () => {
         epaClass: data.categories.epaClass,
         cylinders: parseInt(data.engine.cylinder),
         fuelType: data.engine.fuelType,
-        drivenWheels: data.drivenWheels,
-        transmission: data.transmission,
-        cityMpg: parseInt(data.mpg.city),
-        highwayMpg: parseInt(data.mpg.highway),
+        horsePower: data.engine.horsepower,
+        torque: data.engine.torque,
+        driveType: data.drivenWheels,
+        transmission: data.transmission.transmissionType,
+        fuelCity: parseInt(data.mpg.city),
+        fuelHighway: parseInt(data.mpg.highway),
+        miles: miles,
       };
 
-      console.log(car);
+      // Save the car to the database
+
+      await addCar.mutateAsync(car, {
+        onSuccess: () => {
+          router.push("/dashboard").catch(console.error);
+        },
+        onError: (error) => {
+          console.error(error);
+        },
+      });
     } catch (error) {
       console.error(error);
     }
