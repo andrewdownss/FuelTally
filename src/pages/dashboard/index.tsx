@@ -3,7 +3,7 @@ import DashboardCard from "@/components/car/DashboardCard";
 import Header from "@/components/ui/Header";
 import NavBar from "@/components/ui/NavBar";
 import { Button } from "@/components/ui/button";
-import { Car } from "@/types/Car";
+import type { Car } from "@/types/Car";
 import { api } from "@/utils/api";
 import Link from "next/link";
 import React from "react";
@@ -19,7 +19,7 @@ export default function Dashboard() {
         <div className="container mx-auto py-8">
           <div className="my-4 mt-4">
             <Link href="/cars/add">
-              <Button>Add a car</Button>
+              <Button className="w-full sm:w-auto">Add a car</Button>
             </Link>
           </div>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">

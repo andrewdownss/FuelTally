@@ -49,6 +49,7 @@ const AddCarForm = () => {
       );
       if (!response.ok) {
         throw new Error("Failed to fetch car data");
+        alert("Cant get car data");
       }
       const data: CarData = (await response.json()) as CarData;
       const car = {
@@ -76,10 +77,11 @@ const AddCarForm = () => {
         },
         onError: (error) => {
           console.error(error);
+          alert("Failed to add car to the database");
         },
       });
     } catch (error) {
-      console.error(error);
+      alert(error);
     }
   };
 
@@ -89,13 +91,14 @@ const AddCarForm = () => {
       <Card className="mx-auto w-full max-w-md">
         <CardHeader>
           <CardTitle>Add a Car</CardTitle>
-          <CardDescription>
-            Choose how you would like to add a new car to your dashboard.
-          </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid gap-4">
             <div className="grid gap-4">
+              <p>
+                Keeping costs low on this project, I used a free VIN decode API.
+                Some VIN numbers won&apos;t work properly.
+              </p>
               <div className="grid gap-2">
                 <Label htmlFor="vin">Vehicle Identification Number (VIN)</Label>
                 <Input

@@ -5,19 +5,24 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useState } from "react";
 import { api } from "@/utils/api";
-
+import { useRouter } from "next/router";
 export default function AskAIContainer() {
   const [question, setQuestion] = useState("");
   const [response, setResponse] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const router = useRouter();
   const getAnswer = api.openai.getAnswer.useMutation();
-
+  const carID = router.query.id;
+  const car = api.car.getCar.useQuery(carID as string).data;
   const handleSubmit = async () => {
+    const data = {
+      question: question,
+      car_details: car,
+    };
     setLoading(true);
     getAnswer
-      .mutateAsync(question, {
+      .mutateAsync(data, {
         onSuccess: (data) => {
           setResponse(data.choices[0]?.message.content ?? "");
           setError("");
